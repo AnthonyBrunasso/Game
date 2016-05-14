@@ -17,6 +17,27 @@ void Camera::translate(const sf::Vector2f& offset) {
   m_window.setView(m_view);
 }
 
+void Camera::update(float dt) {
+  sf::Vector2f offset(0.0f, 0.0f);
+
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+    offset.x = -100.0f;
+  }
+  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+    offset.x = 100.0f;
+  }
+
+  if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
+    offset.y = -100.0f;
+  }
+  else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
+    offset.y = 100.0f;
+  }
+
+  offset *= dt;
+  translate(offset);
+}
+
 sf::RenderWindow& Camera::get_window() {
   return m_window;
 }

@@ -12,6 +12,8 @@ public:
   void move_to(const sf::Vector2f& position);
   void translate(const sf::Vector2f& offset);
 
+  void update(float dt);
+
   sf::RenderWindow& get_window();
   sf::View& get_view();
 

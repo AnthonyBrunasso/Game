@@ -52,7 +52,6 @@ uint32_t message_stream::execute(uint32_t count) {
   uint32_t executed = 0;
   for (uint32_t i = 0; i < count; ++i) {
     if (s_command_queue.size() == 0) break;
-
     Message* message = s_command_queue.front();
     message->execute();
     ++executed;

@@ -21,7 +21,6 @@ int main() {
   Camera& camera = camera::get_camera();
   sf::RenderWindow& window = camera.get_window();
 
-
   // Center the camera at 0, 0
   camera.move_to(START_PIXEL);
 
@@ -37,6 +36,8 @@ int main() {
     window.draw(hexagon_shape.get_drawable());
   };
 
+  sf::Clock clock;
+
   while (window.isOpen()) {
     sf::Event event;
     
@@ -50,14 +51,11 @@ int main() {
       window.close();
     }
 
+    sf::Time dt = clock.restart();
     std::string mapPosition = map::update(camera);
-    
-    if (!font::render_string(window, mapPosition, sf::Vector2f(-630.0f, -350.0f)))
-    {
-      std::cout << mapPosition << std::endl;
-    }
 
     map::for_each_coord(draw_hex);
+    camera.update(dt.asSeconds());
     message_stream::execute(1);
     
     //draw mouse-over tile
@@ -68,6 +66,11 @@ int main() {
       hexagon_shape.m_polygon.setPosition(world);
       hexagon_shape.m_polygon.setOutlineColor(sf::Color::Green);
       window.draw(hexagon_shape.get_drawable());
+    }
+
+    if (!font::render_string(window, mapPosition, sf::Vector2f(-630.0f, -350.0f)))
+    {
+      std::cout << mapPosition << std::endl;
     }
 
     window.display();

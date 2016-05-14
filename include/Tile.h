@@ -1,7 +1,5 @@
 #pragma once
 
-
-
 class Tile {
 public:
   Tile() : m_occupied_id(0) {};
