@@ -10,6 +10,7 @@
 #include "hex.h"
 #include "hexagon_shape.h"
 #include "map.h"
+#include "terminal.h"
 
 int main() {
   sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Foobar");
@@ -47,9 +48,12 @@ int main() {
       }
     }
 
-    std::string mapPosition = map::update(camera);
+    if (terminal::quit()) {
+      window.close();
+    }
 
-    window.clear();
+    std::string mapPosition = map::update(camera);
+    
     if (!font::render_string(window, mapPosition, sf::Vector2f(-630.0f, -350.0f)))
     {
       std::cout << mapPosition << std::endl;
@@ -67,7 +71,10 @@ int main() {
     }
 
     window.display();
+    window.clear();
   }
+
+  terminal::kill();
 
   return 0;
 }
