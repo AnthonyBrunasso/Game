@@ -17,6 +17,7 @@ namespace {
     std::cout << "Commands: " << std::endl;
     std::cout << "  help                // shows all terminal commands" << std::endl; 
     std::cout << "  camera move <x> <y> // move camera to x, y pixel coordinates" << std::endl;
+    std::cout << "  tile <x> <y> <z>    // view data on tile" << std::endl;
   }
 
   void execute_default() {
@@ -35,14 +36,29 @@ namespace {
 
     if (tokens[0] == "help") {
       execute_help();
+
+      return false;
     }
 
     if (tokens[0] == "camera") {
       if (tokens[1] == "move") {
         float x = std::stof(tokens[2]);
         float y = std::stof(tokens[3]);
-        Message::create(new MoveToMessage(camera::get_camera(), sf::Vector2f(x, y)));
+        Message::create(
+          new MoveToMessage(camera::get_camera(), sf::Vector2f(x, y)));
       }
+
+      return false;
+    }
+
+    if (tokens[0] == "tile") {
+      int x = std::stof(tokens[1]);
+      int y = std::stof(tokens[2]);
+      int z = std::stof(tokens[3]);
+      Message::create(
+        new ViewTileDataMessage(sf::Vector3i(x, y, z), camera::get_camera().get_window()));
+
+      return false;
     }
 
     return false;
@@ -53,7 +69,6 @@ namespace {
     std::cout << "-------------------" << std::endl;
     while (!s_kill) {
       std::cout << std::endl;
-      std::cout << "> ";
       std::string value;
       std::getline(std::cin, value);
       if (!value.size()) {

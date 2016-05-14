@@ -1,7 +1,14 @@
 #include "message.h"
 
+#include "Tile.h"
+#include "map.h"
+#include "font.h"
+
+#include <iostream>
 #include <mutex>
 #include <queue>
+#include <sstream>
+
 
 namespace {
   std::queue<Message*> s_command_queue;
@@ -25,6 +32,16 @@ uint32_t Message::create(Message* message) {
 
 bool MoveToMessage::execute() {
   m_camera->move_to(m_position);
+  return true;
+}
+
+bool ViewTileDataMessage::execute() {
+  Tile& tile = map::get_tile(m_coord);
+  std::ostringstream ss;
+  ss << "  id: " << tile.get_occupied_id() << std::endl;
+  std::string display = ss.str();
+  // Log here
+
   return true;
 }
 

@@ -34,6 +34,17 @@ private:
   Camera* m_camera;
 };
 
+class ViewTileDataMessage : public Message {
+public:
+  ViewTileDataMessage(sf::Vector3i coord, sf::RenderWindow& window) : 
+    m_coord(coord) {};
+
+  virtual bool execute() override;
+
+private:
+  sf::Vector3i m_coord;
+};
+
 namespace message_stream {
   // Returns number of messages actually executed
   uint32_t execute(uint32_t count);

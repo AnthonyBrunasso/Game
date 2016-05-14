@@ -54,7 +54,7 @@ int main() {
       std::cout << mapPosition << std::endl;
     }
 
-    map::for_each_tile(draw_hex);
+    map::for_each_coord(draw_hex);
     message_stream::execute(1);
     
     //draw mouse-over tile
