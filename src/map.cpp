@@ -24,8 +24,8 @@ void map::for_each_tile(std::function<void(const sf::Vector3i& cube_coord)> oper
 }
 
 std::string map::update(const Camera& camera) {
-  const sf::Vector2i mouse_position = sf::Mouse::getPosition(camera.get_window());
-  const sf::Vector2f world_position = camera.get_window().mapPixelToCoords(mouse_position);
+  const sf::Vector2i mouse_position = sf::Mouse::getPosition(camera.get_const_window());
+  const sf::Vector2f world_position = camera.get_const_window().mapPixelToCoords(mouse_position);
   const sf::Vector2i axial = hex::world_to_axial(world_position, HEX_SIZE);
   const sf::Vector3i cube = hex::world_to_cube(world_position, HEX_SIZE);
   const sf::Vector2i offset = hex::world_to_offset(world_position, HEX_SIZE);

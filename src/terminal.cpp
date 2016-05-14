@@ -1,4 +1,6 @@
 #include "terminal.h"
+#include "camera.h"
+#include "message.h"
 
 #include <iostream>
 #include <thread>
@@ -13,7 +15,8 @@ namespace {
 
   void execute_help() {
     std::cout << "Commands: " << std::endl;
-    std::cout << "  help        // shows all terminal commands" << std::endl; 
+    std::cout << "  help                // shows all terminal commands" << std::endl; 
+    std::cout << "  camera move <x> <y> // move camera to x, y pixel coordinates" << std::endl;
   }
 
   void execute_default() {
@@ -32,6 +35,14 @@ namespace {
 
     if (tokens[0] == "help") {
       execute_help();
+    }
+
+    if (tokens[0] == "camera") {
+      if (tokens[1] == "move") {
+        float x = std::stof(tokens[2]);
+        float y = std::stof(tokens[3]);
+        Message::create(new MoveToMessage(camera::get_camera(), sf::Vector2f(x, y)));
+      }
     }
 
     return false;

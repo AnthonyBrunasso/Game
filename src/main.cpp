@@ -10,19 +10,14 @@
 #include "hex.h"
 #include "hexagon_shape.h"
 #include "map.h"
+#include "message.h"
 #include "terminal.h"
 
 int main() {
-  sf::RenderWindow window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Foobar");
-
+  camera::initialize(1280.0f, 720.0f);
   font::init_font();
-
-  sf::View view;
-  view.reset(sf::FloatRect(0, 0, 1280.0f, 720.0f));
-  view.setViewport(sf::FloatRect(0.0f, 0.0f, 1.0f, 1.0f));
-
-  window.setView(view);
-  Camera camera(window, view);
+  Camera& camera = camera::get_camera();
+  sf::RenderWindow& window = camera.get_window();
 
   // Center the camera at 0, 0
   camera.move_to(START_PIXEL);
@@ -58,7 +53,9 @@ int main() {
     {
       std::cout << mapPosition << std::endl;
     }
+
     map::for_each_tile(draw_hex);
+    message_stream::execute(1);
     
     //draw mouse-over tile
     {
