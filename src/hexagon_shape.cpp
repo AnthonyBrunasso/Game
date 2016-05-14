@@ -7,7 +7,7 @@ HexagonShape::HexagonShape(uint32_t size, sf::Vector2f position) {
   m_polygon.setPointCount(6);
 
   for (uint32_t i = 0; i < 6; ++i) {
-    m_polygon.setPoint(i, hex::hex_corner(position, size, i));
+    m_polygon.setPoint(i, hex::hex_corner(size, i));
   }
   
   // Temporary cruft
