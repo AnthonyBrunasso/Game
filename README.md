@@ -14,3 +14,19 @@ I have compiled and run this project on mac using clang-602.0.53. Since I did no
 
 # Linux Instructions
 These instructions should be very similar to the Mac instructions but without the frameworks. You'll want to generate .so files and copy them into lib. You may need to download SFMLs dependencies, OpenGL, etc if your distro of linux doesn't have them. I will need to test this on my Ubuntu distro and update the readme.
+
+# Windows Instructions
+Windows development can be handled via either scons or premake.
+
+## Scons:
+1. Open a command window to the Game directory
+2. Run 'scons'
+3. To generate a visual studio project file, run 'scons --projects'
+
+## Premake:
+Premake is currently only setup for development with Windows and Visual Studio 2013. For additional platform and compiler support, update the python5.py file.
+
+1. Make sure you have Python 2.7 installed
+2. Open a command window to the Game directory
+3. Run 'python .\bootstrap.py'
+4. Open the Visual Studio project created in the /project directory.

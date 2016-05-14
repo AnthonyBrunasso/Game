@@ -34,6 +34,7 @@ int main() {
   std::function<void(const sf::Vector3i&)> draw_hex = [&](const sf::Vector3i& cube_coord) {
     const sf::Vector2f world = hex::cube_to_world(cube_coord, HEX_SIZE);
     hexagon_shape.m_polygon.setPosition(world);
+    hexagon_shape.m_polygon.setOutlineColor(sf::Color::Red);
     window.draw(hexagon_shape.get_drawable());
   };
 
@@ -54,6 +55,17 @@ int main() {
       std::cout << mapPosition << std::endl;
     }
     map::for_each_tile(draw_hex);
+    
+    //draw mouse-over tile
+    {
+      sf::Vector2f mousePosition = camera.get_window().mapPixelToCoords(sf::Mouse::getPosition(window));
+      const sf::Vector3i mouseCube = hex::world_to_cube(mousePosition, HEX_SIZE);
+      const sf::Vector2f world = hex::cube_to_world(mouseCube, HEX_SIZE);
+      hexagon_shape.m_polygon.setPosition(world);
+      hexagon_shape.m_polygon.setOutlineColor(sf::Color::Green);
+      window.draw(hexagon_shape.get_drawable());
+    }
+
     window.display();
   }
 
