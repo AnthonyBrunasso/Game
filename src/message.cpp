@@ -3,6 +3,7 @@
 #include "Tile.h"
 #include "map.h"
 #include "font.h"
+#include "log.h"
 
 #include <iostream>
 #include <mutex>
@@ -38,9 +39,9 @@ bool MoveToMessage::execute() {
 bool ViewTileDataMessage::execute() {
   Tile& tile = map::get_tile(m_coord);
   std::ostringstream ss;
-  ss << "  id: " << tile.get_occupied_id() << std::endl;
-  std::string display = ss.str();
+  ss << "  id: " << tile.get_occupied_id();
   // Log here
+  log::write(ss.str());
 
   return true;
 }

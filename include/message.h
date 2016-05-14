@@ -36,7 +36,7 @@ private:
 
 class ViewTileDataMessage : public Message {
 public:
-  ViewTileDataMessage(sf::Vector3i coord, sf::RenderWindow& window) : 
+  ViewTileDataMessage(sf::Vector3i coord) : 
     m_coord(coord) {};
 
   virtual bool execute() override;

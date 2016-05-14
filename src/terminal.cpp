@@ -56,7 +56,7 @@ namespace {
       int y = std::stof(tokens[2]);
       int z = std::stof(tokens[3]);
       Message::create(
-        new ViewTileDataMessage(sf::Vector3i(x, y, z), camera::get_camera().get_window()));
+        new ViewTileDataMessage(sf::Vector3i(x, y, z)));
 
       return false;
     }
@@ -70,6 +70,7 @@ namespace {
     while (!s_kill) {
       std::cout << std::endl;
       std::string value;
+      std::cout << "> ";
       std::getline(std::cin, value);
       if (!value.size()) {
         execute_default();

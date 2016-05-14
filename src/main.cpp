@@ -11,13 +11,16 @@
 #include "hexagon_shape.h"
 #include "map.h"
 #include "message.h"
+#include "log.h"
 #include "terminal.h"
 
 int main() {
   camera::initialize(1280.0f, 720.0f);
   font::init_font();
+  log::initialize();
   Camera& camera = camera::get_camera();
   sf::RenderWindow& window = camera.get_window();
+
 
   // Center the camera at 0, 0
   camera.move_to(START_PIXEL);
@@ -71,6 +74,7 @@ int main() {
     window.clear();
   }
 
+  log::kill();
   terminal::kill();
 
   return 0;
