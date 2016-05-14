@@ -49,7 +49,7 @@ int main() {
     std::string mapPosition = map::update(camera);
 
     window.clear();
-    if (!font::render_string(window, mapPosition, sf::Vector2f(-320.f, 320.f)))
+    if (!font::render_string(window, mapPosition, sf::Vector2f(-630.0f, -350.0f)))
     {
       std::cout << mapPosition << std::endl;
     }

@@ -31,9 +31,9 @@ std::string map::update(const Camera& camera) {
   const sf::Vector2i offset = hex::world_to_offset(world_position, HEX_SIZE);
 
   std::ostringstream ss;
-  ss << "World: " << format::vector2(world_position) << " Axial: "
-    << format::vector2(axial)  << " Cube: "
-    << format::vector3(cube)   << " Offset: "
-    << format::vector2(offset);
+  ss << "World: "  << format::vector2(world_position) << std::endl 
+    << "Axial: "  << format::vector2(axial)  << std::endl
+    << "Cube: "   << format::vector3(cube) << std::endl 
+    << "Offset: " << format::vector2(offset);
   return std::move(ss.str());
 }
