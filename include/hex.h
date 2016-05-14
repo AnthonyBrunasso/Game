@@ -20,19 +20,19 @@ namespace hex
 
   // Cube coordinates for hex grid must maintain equality: x + y + z = 0
   const static sf::Vector3i CUBE_DIRECTIONS[NEIGHBOR_COUNT] = {
-    sf::Vector3i(1, -1, 0), // East
-    sf::Vector3i(1, 0, -1), // North East
-    sf::Vector3i(0, 1, -1), // North West
-    sf::Vector3i(-1, 1, 0), // West
-    sf::Vector3i(-1, 0, 1), // South West
-    sf::Vector3i(0, -1, 1), // South East
+    sf::Vector3i(1, -1, 0), // North East
+    sf::Vector3i(1, 0, -1), // East
+    sf::Vector3i(0, 1, -1), // South East
+    sf::Vector3i(-1, 1, 0), // South West
+    sf::Vector3i(-1, 0, 1), // West
+    sf::Vector3i(0, -1, 1), // North West
   };
 
   // Axial coordinates simply drop the third coordinate of cube
   const static sf::Vector2i AXIAL_DIRECTIONS[NEIGHBOR_COUNT] = {
     sf::Vector2i(1 ,  0), // East
     sf::Vector2i(1 , -1), // North East
-    sf::Vector2i(0 , -1), // North Qest
+    sf::Vector2i(0 , -1), // North West
     sf::Vector2i(-1,  0), // West
     sf::Vector2i(-1,  1), // South West
     sf::Vector2i(0 ,  1), // South East

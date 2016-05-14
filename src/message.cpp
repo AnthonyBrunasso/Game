@@ -25,6 +25,7 @@ uint32_t Message::create(Message* message) {
 
 bool MoveToMessage::execute() {
   m_camera->move_to(m_position);
+  return true;
 }
 
 uint32_t message_stream::execute(uint32_t count) {
