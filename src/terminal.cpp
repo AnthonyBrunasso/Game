@@ -1,6 +1,7 @@
 #include "terminal.h"
 #include "camera.h"
 #include "message.h"
+#include "constants.h"
 
 #include <iostream>
 #include <thread>
@@ -15,9 +16,10 @@ namespace {
 
   void execute_help() {
     std::cout << "Commands: " << std::endl;
-    std::cout << "  help                // shows all terminal commands" << std::endl; 
-    std::cout << "  camera move <x> <y> // move camera to x, y pixel coordinates" << std::endl;
-    std::cout << "  tile <x> <y> <z>    // view data on tile" << std::endl;
+    std::cout << "  help                 // shows all terminal commands" << std::endl; 
+    std::cout << "  camera move <x> <y>  // move camera to x, y pixel coordinates" << std::endl;
+    std::cout << "  camera speed <value> // change speed of camera" << std::endl;
+    std::cout << "  tile <x> <y> <z>     // view data on tile" << std::endl;
   }
 
   void execute_default() {
@@ -46,6 +48,10 @@ namespace {
         float y = std::stof(tokens[3]);
         Message::create(
           new MoveToMessage(camera::get_camera(), sf::Vector2f(x, y)));
+      }
+
+      if (tokens[1] == "speed") {
+        CAMERA_SPEED = std::stof(tokens[2]);
       }
 
       return false;

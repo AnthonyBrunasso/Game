@@ -20,3 +20,5 @@ extern const uint32_t HEX_SIZE;
 extern const int32_t MAP_DISTANCE;
 extern const sf::Vector2f START_PIXEL;
 extern const sf::Vector3i START_CUBE;
+
+extern float CAMERA_SPEED;

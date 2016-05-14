@@ -21,17 +21,17 @@ void Camera::update(float dt) {
   sf::Vector2f offset(0.0f, 0.0f);
 
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-    offset.x = -100.0f;
+    offset.x = -CAMERA_SPEED;
   }
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-    offset.x = 100.0f;
+    offset.x = CAMERA_SPEED;
   }
 
   if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
-    offset.y = -100.0f;
+    offset.y = -CAMERA_SPEED;
   }
   else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) {
-    offset.y = 100.0f;
+    offset.y = CAMERA_SPEED;
   }
 
   offset *= dt;
