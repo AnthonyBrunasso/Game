@@ -49,11 +49,11 @@ sf::Vector3f hex::axial_to_cube(const sf::Vector2f& axial_coord) {
   return sf::Vector3f(axial_coord.x, axial_coord.y, -axial_coord.x - axial_coord.y);
 }
 
-sf::Vector2f hex::hex_corner(const sf::Vector2f center, uint32_t size, uint32_t i) {
+sf::Vector2f hex::hex_corner(uint32_t size, uint32_t i) {
   // Corners of hex are 60 degrees apart starting at 30 degress (lower right corner)
   const uint32_t angle = 60 * i + 30;
   const float rad = PI / 180.0f * angle;
-  return sf::Vector2f(center.x + size * cos(rad), center.y + size * sin(rad));
+  return sf::Vector2f(size * cos(rad), size * sin(rad));
 }
 
 sf::Vector2f hex::axial_to_world(const sf::Vector2i& axial_coord, uint32_t size) {

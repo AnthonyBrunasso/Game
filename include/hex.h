@@ -60,8 +60,8 @@ namespace hex
   sf::Vector3i axial_to_cube(const sf::Vector2i& axial_coord);
   sf::Vector3f axial_to_cube(const sf::Vector2f& axial_coord);
 
-  // Get the pixel coordinates to the i'th corner of a hexagon
-  sf::Vector2f hex_corner(const sf::Vector2f center, uint32_t size, uint32_t i);
+  // Get the pixel coordinates to the i'th corner of a hexagon offset from (0,0)
+  sf::Vector2f hex_corner(uint32_t size, uint32_t i);
 
   // Hex and pixel conversions
   sf::Vector2f axial_to_world(const sf::Vector2i& axial_coord, uint32_t size);
