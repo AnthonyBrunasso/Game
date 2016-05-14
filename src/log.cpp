@@ -8,15 +8,15 @@ namespace {
   std::mutex s_mutex;
 }
 
-void log::initialize() {
+void logging::initialize() {
   s_file.open("debug.log", std::fstream::out);
 }
 
-void log::kill() {
+void logging::kill() {
   s_file.close();
 }
 
-void log::write(const std::string& value) {
+void logging::write(const std::string& value) {
   std::lock_guard<std::mutex> lock(s_mutex);
 
   s_file << value << std::endl;

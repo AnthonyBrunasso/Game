@@ -17,7 +17,7 @@
 int main() {
   camera::initialize(1280.0f, 720.0f);
   font::init_font();
-  log::initialize();
+  logging::initialize();
   Camera& camera = camera::get_camera();
   sf::RenderWindow& window = camera.get_window();
 
@@ -77,7 +77,7 @@ int main() {
     window.clear();
   }
 
-  log::kill();
+  logging::kill();
   terminal::kill();
 
   return 0;

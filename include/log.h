@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace log {
+namespace logging {
   void initialize();
   void kill();
   void write(const std::string& value);

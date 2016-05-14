@@ -41,7 +41,7 @@ bool ViewTileDataMessage::execute() {
   std::ostringstream ss;
   ss << "  id: " << tile.get_occupied_id();
   // Log here
-  log::write(ss.str());
+  logging::write(ss.str());
 
   return true;
 }
