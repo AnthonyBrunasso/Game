@@ -4,6 +4,7 @@ env['LIBS'] = ['sfml-audio.lib', 'sfml-graphics.lib', 'sfml-network.lib', 'sfml-
 
 srcFiles = Glob('*.cpp')
 
-env.Program('MyProgram', source=srcFiles)
+if not GetOption('projects'):
+  env.Program('Game', source=srcFiles)
 
 Return('srcFiles')
