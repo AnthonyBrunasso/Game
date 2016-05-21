@@ -1,6 +1,6 @@
 #pragma once
 
-#include <SFML/System/Vector3.hpp>
+#include "Vector3.hpp"
 
 #include <cstdint>
 #include <vector>

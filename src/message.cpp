@@ -1,7 +1,6 @@
 #include "message.h"
 
 #include "Tile.h"
-#include "map.h"
 #include "font.h"
 #include "log.h"
 
@@ -37,13 +36,13 @@ bool MoveToMessage::execute() {
 }
 
 bool ViewTileDataMessage::execute() {
-  Tile& tile = map::get_tile(m_coord);
-  std::ostringstream ss;
-  ss << "  id: " << tile.get_occupied_id();
+  //Tile& tile = map::get_tile(m_coord);
+  //std::ostringstream ss;
+  //ss << "  id: " << tile.get_occupied_id();
   // Log here
-  logging::write(ss.str());
+  //logging::write(ss.str());
 
-  return true;
+  //return true;
 }
 
 uint32_t message_stream::execute(uint32_t count) {
