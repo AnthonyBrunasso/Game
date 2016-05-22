@@ -4,6 +4,8 @@
 
 #include "camera.h"
 
+#include "Simulation/step.h"
+
 class Message {
 public:
   Message() : id(INVALID_ID) {};
@@ -43,6 +45,18 @@ public:
 
 private:
   sf::Vector3i m_coord;
+};
+
+class StepSimulationMessage : public Message {
+public:
+  StepSimulationMessage(Step* step) :
+    m_step(step) {};
+  ~StepSimulationMessage() { delete m_step; }
+
+  virtual bool execute() override;
+
+private:
+  Step* m_step;
 };
 
 namespace message_stream {

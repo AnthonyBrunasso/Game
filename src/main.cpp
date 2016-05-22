@@ -7,13 +7,13 @@
 #include "constants.h"
 #include "font.h"
 #include "format.h"
+#include "game_console.h"
 #include "hexagon_shape.h"
 #include "message.h"
 #include "log.h"
 
 #include "simulation/world_map.h"
 #include "simulation/hex.h"
-#include "simulation/terminal.h"
 #include "simulation/step.h"
 #include "simulation/unique_id.h"
 #include "simulation/simulation.h"
@@ -72,27 +72,33 @@ int main() {
 
   sf::Clock clock;
 
-  // Draw for the first time
-  world_map::for_each_tile(draw_hex);
-  window.display();
-
   // For now, display only changes when a command is received from terminal
-  while (Step* step = terminal::parse_input()) {
+  while (window.isOpen()) {
     sf::Event event;
 
-    simulation::process_step(step);
-    if (step->m_command == COMMAND::QUIT) {
-      delete step;
-      break;
+    while (window.pollEvent(event)) {
+      if (event.type == sf::Event::Closed) {
+        window.close();
+      }
     }
+
+    if (game_console::quit()) {
+      window.close();
+    }
+
+    sf::Time dt = clock.restart();
+    camera.update(dt.asSeconds());
+
+    // This is what step simulation code forward. See: StepSimulationMessage
+    message_stream::execute(1);
 
     window.clear();
     world_map::for_each_tile(draw_hex);
     window.display();
-    delete step;
   }
 
   logging::kill();
+  game_console::kill();
 
   return 0;
 }

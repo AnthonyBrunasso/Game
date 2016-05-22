@@ -2,12 +2,14 @@
 
 #include "font.h"
 #include "log.h"
+#include "game_console.h"
 
 #include <iostream>
 #include <mutex>
 #include <queue>
 #include <sstream>
 
+#include "Simulation/simulation.h"
 
 namespace {
   std::queue<Message*> s_command_queue;
@@ -35,13 +37,14 @@ bool MoveToMessage::execute() {
 }
 
 bool ViewTileDataMessage::execute() {
-  //Tile& tile = map::get_tile(m_coord);
-  //std::ostringstream ss;
-  //ss << "  id: " << tile.get_occupied_id();
-  // Log here
-  //logging::write(ss.str());
+  return true;
+}
 
-  //return true;
+bool StepSimulationMessage::execute() {
+  simulation::process_step(m_step);
+  // Simulation step is processed, signal console that it's ok to queue a new one
+  game_console::signal();
+  return true;
 }
 
 uint32_t message_stream::execute(uint32_t count) {
