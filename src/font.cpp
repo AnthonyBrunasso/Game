@@ -22,7 +22,7 @@ bool font::render_string(sf::RenderWindow& renderWindow, std::string& displayTex
   if (s_ready)
   {
     sf::Text renderText(displayText.c_str(), s_font);
-    renderText.setColor(sf::Color::Red);
+    renderText.setColor(sf::Color::White);
     renderText.setPosition(displayLocation);
     renderWindow.draw(renderText);
   }
