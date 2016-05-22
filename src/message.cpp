@@ -1,6 +1,5 @@
 #include "message.h"
 
-#include "Tile.h"
 #include "font.h"
 #include "log.h"
 

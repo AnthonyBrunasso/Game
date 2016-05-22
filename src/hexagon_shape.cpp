@@ -1,6 +1,6 @@
 #include "hexagon_shape.h"
 
-#include "hex.h"
+#include "simulation/hex.h"
 
 HexagonShape::HexagonShape(uint32_t size, sf::Vector2f position) {
   // Hexagons have 6 points :O

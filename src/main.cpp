@@ -7,12 +7,12 @@
 #include "constants.h"
 #include "font.h"
 #include "format.h"
-#include "hex.h"
 #include "hexagon_shape.h"
 #include "message.h"
 #include "log.h"
 
 #include "simulation/world_map.h"
+#include "simulation/hex.h"
 #include "simulation/terminal.h"
 #include "simulation/step.h"
 #include "simulation/unique_id.h"
@@ -85,7 +85,7 @@ int main() {
       delete step;
       break;
     }
-    
+
     window.clear();
     world_map::for_each_tile(draw_hex);
     window.display();
