@@ -55,7 +55,11 @@ namespace {
     }
   }
 
-  std::thread s_thread(&run);
+  std::thread* s_thread;
+}
+
+void game_console::create() {
+  s_thread = new std::thread(&run);
 }
 
 void game_console::signal() {
@@ -71,5 +75,7 @@ void game_console::kill() {
   s_continue = true;
   s_kill = true;
   m_condition.notify_one();
-  s_thread.join();
+  s_thread->join();
+  delete s_thread;
+  s_thread = nullptr;
 }

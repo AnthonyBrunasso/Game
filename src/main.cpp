@@ -51,6 +51,7 @@ std::string coord_str(const Camera& camera) {
 
 int main() {
   initialize();
+  game_console::create();
 
   Camera& camera = camera::get_camera();
   sf::RenderWindow& window = camera.get_window();

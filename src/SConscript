@@ -2,6 +2,8 @@ Import('env')
 
 env['LIBS'] = ['sfml-audio.lib', 'sfml-graphics.lib', 'sfml-network.lib', 'sfml-system.lib', 'sfml-window.lib']
 
+env['LIBS'].append('4xsim')
+
 srcFiles = Glob('*.cpp')
 
 if not GetOption('projects'):
