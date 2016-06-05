@@ -41,7 +41,8 @@ std::string coord_str(const Camera& camera) {
   const sf::Vector2i offset = hex::world_to_offset(world_position, HEX_SIZE);
 
   std::ostringstream ss;
-  ss << "World: "  << format::vector2(world_position) << std::endl 
+  ss << "Mouse: " << format::vector2(mouse_position) << std::endl
+    << "World: "  << format::vector2(world_position) << std::endl 
     << "Axial: "  << format::vector2(axial)  << std::endl
     << "Cube: "   << format::vector3(cube) << std::endl 
     << "Offset: " << format::vector2(offset);
